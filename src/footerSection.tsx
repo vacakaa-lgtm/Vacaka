@@ -1,5 +1,4 @@
 import { useState } from "react";
-// --- SVG Icons (Used by both App and Footer) ---
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.21-6.83-5.07 6.83H1.725l7.393-8.49L.82 2.25h3.308l5.4 7.08z"/>
@@ -44,7 +43,6 @@ const FooterLink: React.FC<{ href: string, children: React.ReactNode }> = ({ hre
   </li>
 );
 
-// --- FOOTER COMPONENT ---
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -52,7 +50,6 @@ const Footer: React.FC = () => {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      // In a real app, you would send this to an API
       console.log(`Subscribing: ${email}`);
       setSubscribed(true);
       setTimeout(() => {
@@ -70,12 +67,9 @@ const Footer: React.FC = () => {
     <footer className="w-full bg-[#181a20] text-white pt-16 pb-6 relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-gray-700/50 pb-12">
           
-          {/* Column 1: Logo, Tagline, About, Contact */}
           <div className="lg:col-span-1">
-            {/* Logo and Name */}
             <div className="flex items-center text-3xl font-bold mb-2 text-purple-400">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 mr-1 text-purple-600">
                   <path d="M7 21L17 12L7 3V21Z" />
@@ -84,7 +78,6 @@ const Footer: React.FC = () => {
             </div>
             <p className="text-sm text-purple-300 mb-8">Go Live, Go Flawless, Go Regional</p>
 
-            {/* About Us */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">About Us</h3>
               <p className="text-sm text-gray-400">
@@ -92,7 +85,6 @@ const Footer: React.FC = () => {
               </p>
             </div>
 
-            {/* Contact Us */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
               <div className="text-sm text-gray-400 space-y-2">
@@ -108,7 +100,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Information Links */}
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Information</h3>
             <ul className="space-y-3 text-sm">
@@ -120,7 +111,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Helpful Links */}
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Helpful Links</h3>
             <ul className="space-y-3 text-sm">
@@ -131,7 +121,6 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 4: Subscribe Form */}
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4">Subscribe More Info</h3>
             <form onSubmit={handleSubscribe} className="space-y-4">
@@ -158,10 +147,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Social Icons & Copyright */}
         <div className="flex flex-col sm:flex-row justify-between items-center pt-6">
           
-          {/* Social Icons (using the defined SVGs and adding WhatsApp/Instagram) */}
           <div className="flex space-x-4 mb-4 sm:mb-0">
             {[
               { Icon: XIcon, label: 'X (Twitter)' },
@@ -182,14 +169,12 @@ const Footer: React.FC = () => {
             ))}
           </div>
 
-          {/* Copyright */}
           <p className="text-sm text-gray-500">
             © 2025 Vācaka.AI — Built with ❤️ in India
           </p>
         </div>
       </div>
       
-      {/* Scroll to Top Button */}
       <button
         onClick={handleScrollToTop}
         className="fixed bottom-8 right-8 p-3 bg-purple-700 rounded-full shadow-xl hover:bg-purple-600 transition duration-200 z-30 opacity-90"

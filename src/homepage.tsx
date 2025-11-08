@@ -43,7 +43,10 @@ export default function VacakaLanding() {
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
+          // Set your desired offset here (e.g., 80 for 80px from top)
+          const yOffset = -80;
+          const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
       }, 100);
     }

@@ -99,36 +99,6 @@ const VacakaCareersPage: React.FC = () => {
             <div className="flex justify-center lg:justify-end mb-8">
               <div className="relative">
                 <div className="w-64 h-64 relative">
-                  {/* Gradient Background Circle */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-2xl"></div>
-
-                  {/* Head Profile */}
-                  <div className="absolute left-0 top-8 w-32 h-48 bg-gradient-to-br from-cyan-300/40 to-blue-400/40 rounded-l-full"></div>
-
-                  {/* Circular Element */}
-                  <div className="absolute right-16 top-24 w-20 h-20 border-4 border-blue-500 rounded-full bg-black"></div>
-
-                  {[...Array(12)].map((_, i: number) => {
-                    const angle: number = (i * 30 * Math.PI) / 180;
-                    const radius: number = 90;
-                    const x: number = 128 + radius * Math.cos(angle);
-                    const y: number = 128 + radius * Math.sin(angle);
-                    return (
-                      <div
-                        key={i}
-                        className="absolute w-3 h-3 bg-purple-500 rounded-full shadow-lg shadow-purple-500/50"
-                        style={{
-                          left: `${x}px`,
-                          top: `${y}px`,
-                          animation: `pulse ${
-                            2 + (i % 3)
-                          }s ease-in-out infinite`,
-                        }}
-                      ></div>
-                    );
-                  })}
-
-                  <div className="absolute right-16 top-24 w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full opacity-60 animate-pulse"></div>
                 </div>
               </div>
             </div>

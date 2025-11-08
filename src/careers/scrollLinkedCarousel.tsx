@@ -20,7 +20,6 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -31,7 +30,6 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
       const windowHeight = window.innerHeight;
 
       const inView = rect.top < windowHeight && rect.bottom > 0;
-      setIsInView(inView);
 
       if (!inView) return;
 
@@ -73,7 +71,9 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
                 {title}
               </h2>
               <p className="text-lg text-gray-300 leading-relaxed">
-                At Vācaka.AI, you won’t just work on AI — you’ll shape how billions experience emotion, culture, and connection through sound.
+                At Vācaka.AI, you won’t just work on AI — you’ll shape how
+                billions experience emotion, culture, and connection through
+                sound.
               </p>
             </div>
 
@@ -146,24 +146,6 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
           </div>
         </div>
       </div>
-
-      {isInView && currentIndex < items.length - 1 && (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-bounce">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3">
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

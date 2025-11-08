@@ -94,15 +94,12 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = (): void => {
     console.log("Form submitted:", formData);
-    // Add your form submission logic here
-    // Example: call API, show success message, etc.
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex flex-col relative overflow-hidden">
       <AppBar />
       <div className="flex-1 flex flex-col items-center justify-center p-4 mt-24">
-      {/* Animated background waves */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute bottom-0 left-20 w-96 h-96">
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full blur-3xl animate-pulse"></div>
@@ -115,14 +112,12 @@ const ContactForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Main card */}
       <div className="relative bg-stone-100 rounded-3xl shadow-2xl p-8 max-w-2xl w-full">
         <h1 className="text-4xl font-bold text-gray-900 mb-6">
           Have a Query? Let's Talk
         </h1>
 
         <div className="space-y-4">
-          {/* Name and Company Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               type="text"
@@ -142,7 +137,6 @@ const ContactForm: React.FC = () => {
             />
           </div>
 
-          {/* Email and Product Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input
               type="email"
@@ -153,7 +147,6 @@ const ContactForm: React.FC = () => {
               className="w-full px-6 py-4 bg-stone-300 text-white placeholder-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
             />
 
-            {/* Custom Dropdown */}
             <div className="relative">
               <button
                 type="button"
@@ -185,7 +178,6 @@ const ContactForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Query Textarea */}
           <textarea
             name="query"
             value={formData.query}
@@ -195,7 +187,6 @@ const ContactForm: React.FC = () => {
             className="w-full px-6 py-4 bg-stone-300 text-white placeholder-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none"
           />
 
-          {/* Submit Button */}
           <div className="flex justify-end">
             <button
               type="button"
@@ -208,7 +199,6 @@ const ContactForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Social Icons */}
       <div className=" flex gap-4 mt-6">
         {socialLinks.map((social) => (
           <a
