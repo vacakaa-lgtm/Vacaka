@@ -42,7 +42,7 @@ const PricingCard: React.FC<PricingPlan> = ({
       {renderTitle()}
 
       <div className="flex-grow">
-        <p className={`text-5xl font-bold mb-6 ${isCustom ? 'text-white' : 'text-indigo-400'}`}>
+        <p className={`text-5xl font-bold mb-6 text-white`}>
           {displayPrice}
         </p>
         
