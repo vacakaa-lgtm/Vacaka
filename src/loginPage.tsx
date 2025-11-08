@@ -1,7 +1,6 @@
 import React from 'react';
 import { X, Linkedin, Instagram, Youtube } from 'lucide-react';
 
-// SVG Discord Icon Component
 const DiscordIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
     className={className}
@@ -50,38 +49,31 @@ const LoginPage: React.FC = () => {
 
   const handleGetStarted = (): void => {
     console.log('Get Started clicked');
-    // Add your navigation logic here
   };
 
   const handleLogin = (): void => {
     console.log('Login clicked');
-    // Add your navigation logic here
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-950 via-purple-900 to-purple-950 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated background wave effect */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute bottom-0 right-0 w-96 h-96">
           <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full blur-3xl animate-pulse"></div>
         </div>
       </div>
 
-      {/* Main card */}
       <div className="relative bg-stone-100 rounded-3xl shadow-2xl p-12 max-w-md w-full text-center">
-        {/* Logo */}
         <div className="mb-8 inline-block">
           <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center">
             <span className="text-pink-500 text-3xl font-bold">&lt;</span>
           </div>
         </div>
 
-        {/* Heading */}
         <h1 className="text-3xl font-bold text-gray-900 mb-12 leading-tight">
           Make AI sound the<br />way India feels
         </h1>
 
-        {/* Get Started Button */}
         <button
           onClick={handleGetStarted}
           className="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-4 px-8 rounded-xl transition-colors duration-200 mb-6"
@@ -89,7 +81,6 @@ const LoginPage: React.FC = () => {
           GET STARTED FREE
         </button>
 
-        {/* Login Link */}
         <p className="text-gray-700 text-sm">
           Already have an account?{' '}
           <button
@@ -101,7 +92,6 @@ const LoginPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Social Icons */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
         {socialLinks.map((social) => (
           <a

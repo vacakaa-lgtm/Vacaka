@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Types
 interface TeamMember {
   id: string;
   name: string;
@@ -40,7 +39,6 @@ interface TeamSectionProps {
     }
   ];
 
-// Team Member Card Component
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   return (
     <div className="relative">
@@ -73,7 +71,6 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   );
 };
 
-// Team Section Component
 const TeamSection: React.FC<TeamSectionProps> = ({ members = teamMembers,
   title = "MEET THE TEAM" 
 }) => {

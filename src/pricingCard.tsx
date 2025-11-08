@@ -38,7 +38,7 @@ const PricingCard: React.FC<PricingPlan> = ({
   );
 
   return (
-    <div className="flex flex-col p-6 w-full lg:w-1/4 min-w-[280px] bg-gray-900 shadow-xl rounded-xl border border-gray-800 transition-transform duration-300 hover:scale-[1.02] hover:z-10 will-change-transform">
+    <div className="flex flex-col p-6 w-full lg:w-1/4 min-w-[280px] bg-gray-900 shadow-xl rounded-xl border border-gray-800 transition-transform duration-300 hover:scale-[1.02] hover:z-10 will-change-transform ">
       {renderTitle()}
 
       <div className="flex-grow">
@@ -57,9 +57,6 @@ const PricingCard: React.FC<PricingPlan> = ({
         </div>
       </div>
 
-      {/* <button className="w-full py-3 mt-4 text-white font-medium bg-fuchsia-600 rounded-lg shadow-lg hover:bg-fuchsia-700 transition duration-150">
-        {buttonText}
-      </button> */}
       <button className="w-fit mx-auto px-6 py-3 mt-4 text-white font-medium bg-gradient-to-r from-pink-400 to-purple-400 rounded-3xl shadow-lg hover:from-pink-500 hover:to-purple-500 transition duration-150">
         {buttonText}
       </button>

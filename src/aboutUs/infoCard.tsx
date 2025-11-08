@@ -10,9 +10,6 @@ export interface InfoCardListProps {
   cards: InfoCardData[];
 }
 
-/**
- * A reusable component that renders multiple info cards from an array
- */
 export const InfoCardList: React.FC<InfoCardListProps> = ({
   cards,
 }) => {

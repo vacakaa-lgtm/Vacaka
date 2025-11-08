@@ -1,4 +1,3 @@
-// TeamMemberCard.tsx
 interface member {
   id: string | number;
   name: string;
@@ -78,33 +77,15 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   );
 };
 
-interface Section {
-  title?: string;
-  members?: member[];
-}
-
 interface TeamMemberListProps {
-  /** legacy single list of members (kept for backward compatibility) */
   members?: member[];
-  /** preferred: an array of sections to render; each section can have an optional title and members */
-  sections?: Section[];
 }
 
-export const TeamMember: React.FC<TeamMemberListProps> = ({ members = teamMembers, sections }) => {
-  // Use provided sections if present, otherwise fall back to a single section built from `members`
-  const sectionsToRender: Section[] = (sections && sections.length) ? sections : [{ members }];
-
+export const TeamMember: React.FC<TeamMemberListProps> = ({ members = teamMembers}) => {
   return (
-    <div className="space-y-8">
-      {sectionsToRender.map((sec, idx) => (
-        <section key={idx} className="py-6">
-          {sec.title && <h2 className="text-white text-2xl font-bold mb-6">{sec.title}</h2>}
-          <div className="space-y-4">
-            {sec.members?.map((m) => (
-              <TeamMemberCard key={m.id} member={m} />
-            ))}
-          </div>
-        </section>
+    <div className="space-y-4">
+      {members.map((member) => (
+        <TeamMemberCard key={member.id} member={member} />
       ))}
     </div>
   );

@@ -277,7 +277,7 @@ export default function VacakaLanding() {
 
       <CommunityCarousel />
 
-      <div id="pricing">
+      <div id="pricing" className="-mb-30">
         <PricingCardSection />
       </div>
 
