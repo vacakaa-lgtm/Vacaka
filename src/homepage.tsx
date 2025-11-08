@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useState, type FormEvent } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link, useNavigate } from "react-router-dom";
 import VoiceDemo from "./voiceDemo";
 import VacakAIArchitecture from "./vacakAIArchitecture";
 import CommunityCarousel from "./communityCarousel";
 import PricingCardSection from "./pricingCard";
 import StorySections from "./storySection";
 import Footer from "./footerSection";
-import ContactForm from "./contactForm";
 import OurStory from "./ourStory";
 import ProductsServices from "./productAndServicesSection";
+import LoginPage from "./loginPage";
 
 
 interface SectionProps {
@@ -36,6 +37,30 @@ const Section = ({ id, className = "", children }: SectionProps) => {
 
 
 export default function VacakaLanding() {
+  // Scroll to section if hash is present in URL (after navigation)
+  useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      // Wait for DOM to update/render
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
+  const navLinks = [
+    { text: "About Us", path: "/about-us", isRoute: true },
+    { text: "Our Story", path: "ourstory", isRoute: false },
+    { text: "Products", path: "products", isRoute: false },
+    { text: "Features", path: "features", isRoute: false },
+    { text: "Pricing", path: "pricing", isRoute: false },
+    { text: "Blogs", path: "/blogs", isRoute: true },
+    { text: "Careers", path: "/careers", isRoute: true },
+  ];
+  const navigate = useNavigate();
+
   const logos = [
     "jiohotstar",
     "ndtv",
@@ -49,7 +74,7 @@ export default function VacakaLanding() {
   ];
 
   const testimonialsRef = useRef<HTMLDivElement | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused] = useState(false);
   const testimonials = [
     {
       quote:
@@ -86,7 +111,7 @@ export default function VacakaLanding() {
     window.addEventListener("resize", calc);
 
     let index = 0;
-    let rafId: number | null = null;
+    const rafId: number | null = null;
     let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
     const step = () => {
@@ -118,25 +143,6 @@ export default function VacakaLanding() {
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, [isPaused, testimonials.length]);
-
-  const handleQuery = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const d = Object.fromEntries(f.entries()) as Record<string, FormDataEntryValue>;
-
-    const subject = encodeURIComponent(
-      `Vācaka.AI Query from ${d.name || "Unknown"}`
-    );
-    const body = encodeURIComponent(`Name: ${d.name}
-Company: ${d.company}
-Email: ${d.email}
-Type: ${d.type}
-
-Query:
-${d.query}`);
-
-    window.location.href = `mailto:hello@vacaka.ai?subject=${subject}&body=${body}`;
-  };
 
   return (
     <div className="min-h-screen bg-black text-gray-100 font-sans relative overflow-x-hidden">
@@ -174,29 +180,34 @@ ${d.query}`);
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            {[
-              "Home",
-              "Where it began",
-              "Services",
-              "USP",
-              "Pricing",
-              "Testimonials",
-              "Leadership",
-            ].map((t) => (
-              <a
-                key={t}
-                href={`#${t.toLowerCase().replace(/ /g, "")}`}
-                className="text-gray-300 hover:text-pink-400 transition"
-              >
-                {t}
-              </a>
+            {navLinks.map(({ text, path, isRoute }) => (
+              isRoute ? (
+                <Link
+                  key={text}
+                  to={path}
+                  className="text-gray-300 hover:text-pink-400 transition"
+                >
+                  {text}
+                </Link>
+              ) : (
+                <button
+                  key={text}
+                  onClick={() => {
+                    // Always navigate to homepage with hash for internal sections
+                    navigate(`/#${path}`);
+                  }}
+                  className="text-gray-300 hover:text-pink-400 transition cursor-pointer bg-transparent border-none"
+                >
+                  {text}
+                </button>
+              )
             ))}
-            <a
-              href="#query"
+            <Link
+              to="/contact"
               className="ml-2 inline-block bg-gradient-to-r from-pink-600 to-purple-600 px-4 py-2 rounded-md text-white shadow hover:scale-105 transition-transform"
             >
               Query
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -210,24 +221,32 @@ ${d.query}`);
             <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-5xl md:text-6xl font-extrabold leading-tight">Go <span className="blink-live">LIVE</span>. Go Regional. Go Flawless.</motion.h1>
             <p className="mt-5 text-lg text-gray-300 max-w-2xl"><strong className="text-pink-400">Vācaka.AI</strong> is the only AI Voice Transmission Infrastructure built for the Indian media supply chain. We eliminate <strong>90% of your post-production QA labor</strong> by guaranteeing emotional fidelity across <strong>22+ vernacular languages</strong>, in real-time.</p>
             <div className="mt-8 flex gap-4">
-              <a href="#query" className="px-6 py-3 rounded-md bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg transform hover:-translate-y-0.5 transition">Book Pilot</a>
+              <Link to="/contact" className="px-6 py-3 rounded-md bg-pink-600 hover:bg-pink-700 text-white font-semibold shadow-lg transform hover:-translate-y-0.5 transition">Book Pilot</Link>
               <a href="#services" className="px-6 py-3 rounded-md border border-gray-700 text-gray-200 hover:text-white hover:border-pink-500 transition">See Services</a>
             </div>
           </div>
         </div>
       </Section>
 
-      <OurStory />
+      <div id="ourstory">
+        <OurStory />
+      </div>
 
-      <ProductsServices />
+      <div id="products">
+        <ProductsServices />
+      </div>
 
       <VoiceDemo />
 
-      <VacakAIArchitecture />
+      <div id="features">
+        <VacakAIArchitecture />
+      </div>
 
       <CommunityCarousel />
 
-      <PricingCardSection />
+      <div id="pricing">
+        <PricingCardSection />
+      </div>
 
       <StorySections />
 
@@ -347,8 +366,8 @@ ${d.query}`);
         </div>
       </Section> */}
 
+<LoginPage />
       {/* Query */}
-      < ContactForm />
       {/* <Section id="query" className="bg-gradient-to-br from-purple-900 to-gray-900">
         <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 backdrop-blur-md p-8 rounded-2xl">
           <h3 className="text-2xl font-bold text-pink-400">Have a Query? Let's Talk.</h3>

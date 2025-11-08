@@ -1,0 +1,171 @@
+import React, { useState, useEffect, useRef } from "react";
+
+interface CarouselItem {
+  id: string | number;
+  imageUrl: string;
+  caption: string;
+}
+
+interface ScrollLinkedCarouselProps {
+  title: string;
+  items: CarouselItem[];
+  scrollMultiplier?: number;
+}
+
+const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
+  title,
+  items,
+  scrollMultiplier = 1.5,
+}) => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = (): void => {
+      if (!sectionRef.current) return;
+
+      const section = sectionRef.current;
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const inView = rect.top < windowHeight && rect.bottom > 0;
+      setIsInView(inView);
+
+      if (!inView) return;
+
+      const sectionHeight = section.offsetHeight;
+      const scrollableHeight = sectionHeight + windowHeight;
+      const scrolled = windowHeight - rect.top;
+      const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+
+      setScrollProgress(progress);
+
+      const totalImages = items.length;
+      const imageIndex = Math.floor(progress * totalImages);
+      const clampedIndex = Math.min(imageIndex, totalImages - 1);
+
+      setCurrentIndex(clampedIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [items.length, scrollProgress]);
+
+  const sectionHeight = `${100 + items.length * 50 * scrollMultiplier}vh`;
+
+  return (
+    <div
+      ref={sectionRef}
+      className="relative bg-black"
+      style={{ minHeight: sectionHeight }}
+    >
+      <div className="sticky top-0 h-screen flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-white space-y-6">
+              <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                {title}
+              </h2>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                At Vācaka.AI, you won’t just work on AI — you’ll shape how billions experience emotion, culture, and connection through sound.
+              </p>
+            </div>
+
+            <div className="relative">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-visible">
+                {items.map((item, index) => {
+                  const isActive = index === currentIndex;
+                  const isNext = index === currentIndex + 1;
+                  const isPrevious = index < currentIndex;
+
+                  return (
+                    <div
+                      key={item.id}
+                      className={`absolute inset-0 transition-all duration-700 ease-out ${
+                        isActive
+                          ? "opacity-100 translate-x-0 z-20 scale-100"
+                          : isNext
+                          ? "opacity-40 -translate-x-1/2 z-10 scale-95 blur-sm"
+                          : isPrevious
+                          ? "opacity-0 translate-x-full z-0"
+                          : "opacity-0 -translate-x-full z-0"
+                      }`}
+                    >
+                      <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                        <img
+                          src={item.imageUrl}
+                          alt={item.caption}
+                          className="w-full h-full object-cover"
+                        />
+
+                        {isNext && (
+                          <div className="absolute inset-0 bg-black/50" />
+                        )}
+
+                        {isActive && (
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+                            <p className="text-white text-lg font-medium">
+                              {item.caption}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl -z-10 rounded-2xl" />
+              </div>
+
+              <div className="flex gap-2 mt-6 justify-center overflow-x-auto pb-2">
+                {items.map((item, index) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === currentIndex
+                        ? "border-blue-500 scale-110 shadow-lg shadow-blue-500/50"
+                        : "border-gray-700 opacity-50 hover:opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={item.imageUrl}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {isInView && currentIndex < items.length - 1 && (
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-bounce">
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-3">
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ScrollLinkedCarousel;

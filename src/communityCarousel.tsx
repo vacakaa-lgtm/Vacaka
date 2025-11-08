@@ -1,7 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, type ReactElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const cards = [
+interface Card {
+  id: number;
+  name: string;
+  role: string;
+  text: string;
+  color: string;
+  img: string;
+}
+
+const cards: Card[] = [
   {
     id: 1,
     name: "Anita Menon",
@@ -31,35 +40,39 @@ const cards = [
   },
 ];
 
-export default function SmoothCarousel() {
-  const [active, setActive] = useState(0);
-  const intervalRef = useRef(null);
+export default function SmoothCarousel(): ReactElement {
+  const [active, setActive] = useState<number>(0);
+  const intervalRef = useRef<number | null>(null);
 
-  const startAuto = () => {
+  const startAuto = (): void => {
     stopAuto();
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       slideTo(active + 1);
     }, 5000);
   };
 
-  const stopAuto = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+  const stopAuto = (): void => {
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
   useEffect(() => {
     startAuto();
-    return stopAuto;
+    return () => stopAuto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
-  const slideTo = (index) => {
+  const slideTo = (index: number): void => {
     stopAuto();
     const newIndex = (index + cards.length) % cards.length;
     setActive(newIndex);
   };
 
-  const positions = [-1, 0, 1];
+  const positions: number[] = [-1, 0, 1];
 
-  const getCard = (offset) => {
+  const getCard = (offset: number): Card => {
     const index = (active + offset + cards.length) % cards.length;
     return cards[index];
   };
@@ -101,6 +114,7 @@ export default function SmoothCarousel() {
                   <img
                     src={card.img}
                     className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
+                    alt={card.name}
                   />
                 </div>
 
@@ -121,7 +135,6 @@ export default function SmoothCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* DOTS */}
       <div className="flex gap-2 mt-6">
         {cards.map((_, index) => (
           <button
