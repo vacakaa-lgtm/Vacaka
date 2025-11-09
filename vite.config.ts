@@ -7,4 +7,5 @@ export default defineConfig({
     ? "/Vacaka/"
     : "/",
   plugins: [react()],
+  assetsInclude: ["**/*.gif", "**/*.svg"],
 })

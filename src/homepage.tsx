@@ -63,14 +63,14 @@ export default function VacakaLanding() {
   const navigate = useNavigate();
 
   const logos = [
-    "public/SVGs/1.svg",
-    "public/SVGs/2.svg",
-    "public/SVGs/3.svg",
-    "public/SVGs/4.svg",
-    "public/SVGs/5.svg",
-    "public/SVGs/6.svg",
-    "public/SVGs/7.svg",
-    "public/SVGs/8.svg",
+    "/SVGs/1.svg",
+    "/SVGs/2.svg",
+    "/SVGs/3.svg",
+    "/SVGs/4.svg",
+    "/SVGs/5.svg",
+    "/SVGs/6.svg",
+    "/SVGs/7.svg",
+    "/SVGs/8.svg",
   ];
 
   const testimonialsRef = useRef<HTMLDivElement | null>(null);
