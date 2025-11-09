@@ -95,7 +95,7 @@ const VacakaCareersPage: React.FC = () => {
 
           <div className="space-y-8">
             <div className="flex relative justify-center lg:justify-end mb-8">
-              <img src="\Images and PNGs\Career-Page-1.png" alt="carrer page image" className="h-84 w-124" />
+              <img src="public\Images and PNGs\Career-Page-1.png" alt="carrer page image" className="h-84 w-124" />
             </div>
 
             <div>
