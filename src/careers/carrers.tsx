@@ -3,6 +3,7 @@ import AppBar from "../components/AppBar";
 import type { ChangeEvent } from "react";
 import { Search, MapPin, X } from "lucide-react";
 import ScrollLinkedCarousel from "./scrollLinkedCarousel";
+import { Section } from "../homepage";
 
 interface SearchFormData {
   role: string;
@@ -48,8 +49,8 @@ const VacakaCareersPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <AppBar />
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <header className="mb-8 mt-10">
+      <Section id="careerPage" className="max-w-7xl mx-auto px-6 py-12">
+        <header className="mb-8 mt-20">
           <h1 className="text-4xl font-medium tracking-wide mb-2 leading-tight">
             Careers @Vācaka.AI
           </h1>
@@ -136,7 +137,7 @@ const VacakaCareersPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
 
       <style>{`
         @keyframes pulse {
@@ -161,7 +162,6 @@ const VacakaCareersPage: React.FC = () => {
           scrollbar-width: none;     /* Firefox */
         }
       `}</style>
-
       <ScrollLinkedCarousel
         title="Why Work with Us?"
         items={items}

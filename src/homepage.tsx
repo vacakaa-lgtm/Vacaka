@@ -18,7 +18,7 @@ interface SectionProps {
   children: React.ReactNode;
 }
 
-const Section = ({ id, className = "", children }: SectionProps) => {
+export const Section = ({ id, className = "", children }: SectionProps) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
   return (
     <motion.section
@@ -27,7 +27,7 @@ const Section = ({ id, className = "", children }: SectionProps) => {
       initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`relative py-20 px-6 ${className}`}
+      className={`relative ${className}`}
     >
       {children}
     </motion.section>
@@ -62,15 +62,14 @@ export default function VacakaLanding() {
   const navigate = useNavigate();
 
   const logos = [
-    "jiohotstar",
-    "ndtv",
-    "cartoonnet",
-    "pogo",
-    "spotify",
-    "youtube",
-    "adobe",
-    "davinci",
-    "kukufm",
+    "public/Images and PNGs/Logo1.png",
+    "public/Images and PNGs/Logo2.png",
+    "public/Images and PNGs/Logo3.png",
+    "public/Images and PNGs/Logo4.png",
+    "public/Images and PNGs/Logo5.png",
+    "public/Images and PNGs/Logo6.png",
+    "public/Images and PNGs/Logo7.png",
+    "public/Images and PNGs/Logo8.png",
   ];
 
   const testimonialsRef = useRef<HTMLDivElement | null>(null);
@@ -165,8 +164,6 @@ export default function VacakaLanding() {
           scrollbar-width: none;     /* Firefox */
         }
       `}</style>
-
-
       <header className="fixed top-0 left-0 right-0 z-100 backdrop-blur-md bg-black/60 border-b border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -211,15 +208,13 @@ export default function VacakaLanding() {
           </nav>
         </div>
       </header>
-
-      <div className="h-20" />
-
+      <div className="h-30" />
       {/* HERO */}
       <Section id="home" className="relative overflow-hidden mt-4">
-          <img
-            className="absolute inset-0 w-full h-full object-cover opacity-28 z-10"
-            src="public\Videos\GIF-Purple-BG-Video.gif"
-          />
+        <img
+          className="absolute inset-0 w-full h-full object-cover opacity-28 z-10"
+          src="public\Videos\GIF-Purple-BG-Video.gif"
+        />
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center relative z-10">
           <div>
             <motion.h1
@@ -256,46 +251,40 @@ export default function VacakaLanding() {
           </div>
         </div>
       </Section>
-
-      <div id="ourstory">
+      <Section id="ourstory" className="mt-30">
         <OurStory />
-      </div>
-
-      <div id="products" className="z-50">
+      </Section>
+      <Section id="products">
         <ProductsServices />
-      </div>
-
-      <VoiceDemo />
-
-      <div id="features">
+      </Section>
+      <Section id="voicedemo" className="my-10">
+        <VoiceDemo />
+      </Section>
+      <Section id="features">
         <VacakAIArchitecture />
-      </div>
-
-      <CommunityCarousel />
-
-      <div id="pricing" className="-mb-30">
+      </Section>
+      <Section id="community">
+        <CommunityCarousel />
+      </Section>
+      <Section id="pricing" className="-mb-40">
         <PricingCardSection />
-      </div>
-
-      <StorySections />
-
-      <section className="py-12">
+      </Section>
+      <Section id="story">
+        <StorySections />
+      </Section>
+      <section>
         <div className="max-w-6xl mx-auto overflow-hidden">
-          <div className="marquee gap-8 flex items-center">
+          <div className="marquee gap-8 flex items-center w-full">
             {logos.concat(logos).map((l, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 px-6 py-3 bg-white/5 rounded-md text-xs text-gray-300"
-              >
-                {l}
-              </div>
+                <img src={l} alt="imgaes"  key={i} className="h-18 w-18"/>
             ))}
           </div>
         </div>
       </section>
-
       <LoginPage />
-      <Footer />
+      <Section id="footer">
+        <Footer />
+      </Section>{" "}
     </div>
   );
 }

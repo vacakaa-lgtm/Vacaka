@@ -78,7 +78,7 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
             </div>
 
             <div className="relative">
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-visible">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                 {items.map((item, index) => {
                   const isActive = index === currentIndex;
                   const isNext = index === currentIndex + 1;
@@ -119,29 +119,7 @@ const ScrollLinkedCarousel: React.FC<ScrollLinkedCarouselProps> = ({
                     </div>
                   );
                 })}
-
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl -z-10 rounded-2xl" />
               </div>
-
-              {/* <div className="flex gap-2 mt-6 justify-center overflow-x-auto pb-2">
-                {items.map((item, index) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === currentIndex
-                        ? "border-blue-500 scale-110 shadow-lg shadow-blue-500/50"
-                        : "border-gray-700 opacity-50 hover:opacity-100"
-                    }`}
-                  >
-                    <img
-                      src={item.imageUrl}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div> */}
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ export default function VoiceDemo() {
   const languages = ["Hindi", "Bengali", "Tamil", "Punjabi", "Marathi"];
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+    <div className="bg-black flex items-center justify-center">
       <div className="flex flex-col md:flex-col max-w-6xl w-full gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white mb-2">Voice Demo</h2>
