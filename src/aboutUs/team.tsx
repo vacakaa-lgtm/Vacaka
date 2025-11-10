@@ -13,11 +13,11 @@ interface TeamSectionProps {
 const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   return (
     <div className="relative">
-      <div className="bg-[#f7f4e9] py-4 rounded-lg shadow-md">
+      <div className=" py-4 rounded-lg shadow-md">
         <img
           src={member.image}
           alt={member.name}
-          className="w-60 h-60 object-cover rounded"
+          className="w-60 h-60 object-cover rounded scale-130"
         />
         {/* <span className="font-bold text-sm tracking-wide text-black block mt-2 text-center">
           {member.name}
@@ -28,11 +28,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
               href={member.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute -top-6 -right-14 rounded-full shadow-lg transition-colors duration-200"
+              className="absolute -top-8 -right-16 rounded-full shadow-lg transition-colors duration-200"
               aria-label={`${member.name}'s LinkedIn profile`}
             >
               <img
-                src={Images.LINKEDIN}
+                src={Images.MEET_TEAM_LINKEDIN}
                 alt="LinkedIn"
                 className="w-14 h-14 object-cover"
               />

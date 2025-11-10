@@ -448,7 +448,7 @@ export const teamMembers: TeamMember[] = [
     id: "1",
     name: "KAUSHAL SETHI",
     image: Images.KAUSHAL_SETHI,
-    linkedinUrl: "https://linkedin.com/in/example1",
+    linkedinUrl: "https://www.linkedin.com/in/kaushalsethi/",
     description:
       "Kaushal is the creative force behind Vacaka.AI's product vision and experience design. Kaushal brings imagination to intelligence. With a background that blends HR, design thinking, and AI strategy, he shapes how Vacaka.AI feels — not just how it functions. From crafting the brand's narrative voice to building intuitive AI systems, Kaushal bridges creativity with computation. He believes technology should move like art and sound like emotion.",
   },
@@ -456,7 +456,7 @@ export const teamMembers: TeamMember[] = [
     id: "2",
     name: "DEEPASHA",
     image: Images.DEEPASHA,
-    linkedinUrl: "https://linkedin.com/in/example2",
+    linkedinUrl: "https://www.linkedin.com/in/deepasha/",
     description:
       "An MBA–HR mind with an artist’s heart, Deepasha blends empathy with enterprise. She’s the bridge between people and product — ensuring every innovation at Vācaka.AI stays rooted in human understanding, creative culture, and strategic clarity. Her vision keeps the brand soulful as it scales.",
     imageOnRight: true,
@@ -465,7 +465,7 @@ export const teamMembers: TeamMember[] = [
     id: "3",
     name: "SAHIL THAKUR",
     image: Images.SAHIL_THAKUR,
-    linkedinUrl: "https://linkedin.com/in/example3",
+    linkedinUrl: "https://www.linkedin.com/in/isahilthakur/",
     description:
       "The calm mind behind the structure. Sahil brings precision, discipline, and foresight to the table — making sure Vācaka.AI’s growth stays compliant, ethical, and future-proof. With a deep understanding of HR governance and revenue frameworks, he ensures innovation never outpaces integrity.",
   },

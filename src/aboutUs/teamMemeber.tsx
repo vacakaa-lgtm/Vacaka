@@ -11,7 +11,7 @@ interface TeamMemberListProps {
 export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   const imageCard = (
     <div className="flex-shrink-0">
-      <div className="bg-[#f7f4e9] rounded-lg p-3 shadow-lg">
+      <div className="rounded-lg p-3 shadow-lg">
         <img
           src={member.image}
           alt={`${member.name} profile picture`}
@@ -35,7 +35,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
   );
 
   return (
-    <div className="flex items-start gap-16 px-40 py-10 bg-black text-white">
+    <div className="flex items-center gap-16 px-40 py-10 bg-black text-white">
       {member.imageOnRight ? (
         <>
           {descriptionCard}
