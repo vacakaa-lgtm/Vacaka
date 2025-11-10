@@ -40,7 +40,7 @@ export default function SmoothCarousel(): ReactElement {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-4 mt-6 select-none bg-black py-16">
+    <div className="w-full flex flex-col items-center gap-15 mt-6 select-none bg-black py-16">
       <h1 className="text-white text-4xl font-bold mb-12">The Voice of Our Community</h1>
 
       <div
