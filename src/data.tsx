@@ -1,3 +1,4 @@
+import { GIFs } from "./constants/gifPaths";
 import { Images } from "./constants/svgPaths";
 
 // ------------------------------------------------
@@ -212,7 +213,7 @@ export const productCards = [
     ],
     button: "Request a Demo",
     color: "#e099ff",
-    link: "",
+    link: GIFs.CONNECT,
   },
   {
     title: "Vācaka.AI Dubb™",
@@ -226,7 +227,7 @@ export const productCards = [
     ],
     button: "Go Live in Any Language",
     color: "#e770b1",
-    link: "",
+    link: GIFs.DUB,
   },
   {
     title: "Vācaka.AI Clone™",
@@ -241,7 +242,7 @@ export const productCards = [
     ],
     button: "Try Now for Free",
     color: "#6593e6",
-    link: "",
+    link: GIFs.CLONE,
   },
   {
     title: "Vācaka.AI Sonic™",

@@ -1,4 +1,5 @@
 import React from "react";
+import { GIFs } from "../constants/gifPaths";
 
 const RandomThoughts: React.FC = () => {
   return (
@@ -9,12 +10,10 @@ const RandomThoughts: React.FC = () => {
             The Why That Drives Us:
           </h3>
           <p className="text-gray-200 leading-relaxed text-lg">
-            We built{" "}
-            <span className="text-purple-400 font-semibold">Vācaka.AI</span>{" "}
-            because India deserves better than flat, westernized,
-            one-size-fits-all voices. Because your audience in Chennai,
-            Guwahati, and Lucknow deserves to hear their own language, their own
-            tone, their own emotion — reflected back accurately.
+            We built Vācaka.AI because India deserves better than flat,
+            westernized, one-size-fits-all voices. Because your audience in
+            Chennai, Guwahati, and Lucknow deserves to hear their own language,
+            their own tone, their own emotion — reflected back accurately.
           </p>
         </div>
 
@@ -23,8 +22,7 @@ const RandomThoughts: React.FC = () => {
             Our Promise to Artists:
           </h3>
           <p className="text-gray-200 leading-relaxed text-lg mb-6">
-            <span className="text-purple-400 font-semibold">Vācaka.AI</span>{" "}
-            stands with dubbing artists.
+            Vācaka.AI stands with dubbing artists.
           </p>
           <p className="text-gray-200 leading-relaxed text-lg mb-6">
             We’re not here to take their jobs — we’re here to give them reach,
@@ -53,11 +51,15 @@ const RandomThoughts: React.FC = () => {
           </p>
         </div>
 
-        <div className="w-full h-72 bg-gray-800 rounded-2xl border border-gray-700 flex items-center justify-center mt-10">
-          <video width="640" height="360" controls>
-            <source src="\Videos\Video 2.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>{" "}
+        <div className="w-full h-72 rounded-2xl flex items-center relative overflow-hidden justify-center mt-10">
+          <iframe
+            className="border-1 absolute top-0 left-0 border-red-200 h-full w-full"
+            src={GIFs.RANDOM_THOUGHTS}
+            title="YouTube Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
       </div>
     </div>
