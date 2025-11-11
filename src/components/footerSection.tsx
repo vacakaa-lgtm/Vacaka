@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      await handleSubmit({email, type:"subscribe"});
+      await handleSubmit({ email, type: "subscribe" });
       console.log(`Subscribing: ${email}`);
       setSubscribed(true);
       setTimeout(() => {
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-[#181a20] text-white pt-16 pb-6 relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-gray-700/50 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-gray-700/50 pb-10">
           <div className="lg:col-span-1">
             <div className="ml-18 items-center justify-center">
               <img
@@ -163,7 +163,9 @@ const Footer: React.FC = () => {
             </form>
           </div>
         </div>
-
+        <p className="text-right text-[#181a20]">
+          made with time, lots of lost sleep : esmeray0w0@gmail.com
+        </p>
         <div className="flex flex-col sm:flex-row justify-between items-center pt-6">
           <div className="flex mb-4 sm:mb-0 gap-2">
             {socialLinks.map(({ icon, label }, index) => (
