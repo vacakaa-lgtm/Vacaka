@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import AppBar from "../components/AppBar";
 import { socialLinks } from "../data";
 import { GIFs } from "../constants/gifPaths";
+import { handleSubmit } from "../EmailService";
 
 interface FormData {
   name: string;
@@ -30,9 +31,9 @@ const ContactForm: React.FC = () => {
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [querySent, setQuerySent] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // ✅ Added outside click detection
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -66,8 +67,23 @@ const ContactForm: React.FC = () => {
     setIsDropdownOpen(false);
   };
 
-  const handleSubmit = (): void => {
-    console.log("Form submitted:", formData);
+  const handleQuery = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.email) {
+      const email = formData.email;
+      await handleSubmit({ email, type: "subscribe" });
+      console.log(`Subscribing: ${email}`);
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          company: "",
+          email: "",
+          product: "",
+          query: "",
+        });
+      }, 3000);
+    }
+    setQuerySent(true);
   };
 
   return (
@@ -98,6 +114,7 @@ const ContactForm: React.FC = () => {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
+                disabled={querySent}
                 type="text"
                 name="name"
                 value={formData.name}
@@ -106,6 +123,7 @@ const ContactForm: React.FC = () => {
                 className="w-full px-6 py-4 bg-[#b0af9d] text-white placeholder-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
               <input
+                disabled={querySent}
                 type="text"
                 name="company"
                 value={formData.company}
@@ -117,6 +135,7 @@ const ContactForm: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
+                disabled={querySent}
                 type="email"
                 name="email"
                 value={formData.email}
@@ -125,9 +144,9 @@ const ContactForm: React.FC = () => {
                 className="w-full px-6 py-4 bg-[#b0af9d] text-white placeholder-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
               />
 
-              {/* ✅ Dropdown with ref added */}
               <div className="relative" ref={dropdownRef}>
                 <button
+                  disabled={querySent}
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="w-full px-6 py-4 bg-[#b0af9d] text-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all flex items-center justify-between text-left"
@@ -144,6 +163,7 @@ const ContactForm: React.FC = () => {
                   <div className="absolute z-10 w-full mt-2 bg-[#b0af9d] text-white rounded-xl shadow-lg overflow-hidden">
                     {products.map((product) => (
                       <button
+                        disabled={querySent}
                         key={product}
                         type="button"
                         onClick={() => handleProductSelect(product)}
@@ -158,6 +178,7 @@ const ContactForm: React.FC = () => {
             </div>
 
             <textarea
+              disabled={querySent}
               name="query"
               value={formData.query}
               onChange={handleInputChange}
@@ -166,15 +187,22 @@ const ContactForm: React.FC = () => {
               className="w-full px-6 py-4 bg-[#b0af9d] text-white placeholder-stone-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all resize-none"
             />
 
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-4 px-10 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Book a Call Now
-              </button>
-            </div>
+            {!querySent ? (
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleQuery}
+                  disabled={querySent}
+                  className={`bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-4 px-10 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl`}
+                >
+                  Book a Call Now
+                </button>
+              </div>
+            ) : (
+              <div className="text-green-500 font-semibold text-lg text-center">
+                <p>Call Booked Successfully</p>
+              </div>
+            )}
           </div>
         </div>
 

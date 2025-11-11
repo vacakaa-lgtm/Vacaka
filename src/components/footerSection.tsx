@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      await handleSubmit(email);
+      await handleSubmit({email, type:"subscribe"});
       console.log(`Subscribing: ${email}`);
       setSubscribed(true);
       setTimeout(() => {

@@ -1,22 +1,37 @@
 import emailjs, { type EmailJSResponseStatus } from "emailjs-com";
 
-export const handleSubmit = async (
-  email: string
-): Promise<EmailJSResponseStatus | void> => {
-  if (!email) return;
+interface EmailConfig {
+  email: string;
+  type: "subscribe" | "query";
+}
+
+export const handleSubmit = async ({
+  email,
+  type,
+}: EmailConfig): Promise<EmailJSResponseStatus | void> => {
+  if (!email) {
+    console.error("Email is required.");
+    return;
+  }
+
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+  const templateId =
+    type === "query"
+      ? (import.meta.env.VITE_EMAILJS_TEMPLATE_ID_QUERY as string)
+      : (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string);
 
   try {
     const response: EmailJSResponseStatus = await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      serviceId,
+      templateId,
       { email },
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      publicKey
     );
-    // alert("✅ Email sent successfully!");
+    console.log("✅ Email sent successfully:", response.status, response.text);
     return response;
   } catch (err) {
     const error = err as { text?: string };
-    console.log(error);
-    // alert(`❌ Failed to send email: ${error.text ?? "Unknown error"}`);
+    console.error("❌ Failed to send email:", error.text || err);
   }
 };
