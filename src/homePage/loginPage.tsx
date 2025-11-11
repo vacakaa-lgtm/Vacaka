@@ -96,7 +96,7 @@ const LoginPage: React.FC = () => {
         </p>
       </div>
 
-      <div className="absolute bottom-22 gap-2 flex z-10">
+      <div className="absolute bottom-12 gap-2 flex z-10">
         {socialLinks.map((social) => (
           <a
             key={social.label}
