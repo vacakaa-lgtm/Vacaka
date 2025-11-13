@@ -53,7 +53,7 @@ const RandomThoughts: React.FC = () => {
 
         <div className="w-full h-72 rounded-2xl flex items-center relative overflow-hidden justify-center mt-10">
           <iframe
-            className="border-1 absolute top-0 left-0 border-red-200 h-full w-full"
+            className="absolute top-0 left-0 h-full w-full"
             src={GIFs.RANDOM_THOUGHTS}
             title="YouTube Video"
             frameBorder="0"
