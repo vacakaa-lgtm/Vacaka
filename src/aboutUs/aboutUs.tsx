@@ -5,8 +5,13 @@ import TeamSection from "./team";
 import TeamMemberList from "./teamMemeber";
 import { cardsData } from "../data";
 import { Images } from "../constants/svgPaths";
+import { useEffect } from "react";
 
 const AboutUs: React.FC = () => {
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
   return (
     <section className="bg-black text-white py-16 sm:py-24 overflow-hidden relative">
       <style>{`
